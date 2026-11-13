@@ -3,23 +3,28 @@
     <!-- HERO SECTION WITH BACKGROUND CROSS-FADE CAROUSEL -->
     <section x-data="{
         activeSlide: 1,
-        totalSlides: 3,
+        totalSlides: 4,
         timer: null,
         slides: [
             {
                 title: 'Estate Architecture & Lakeside Grounds',
                 subtitle: 'Front Drive & Fountain • Inya Lake Waters to the Rear',
-                image: '{{ asset('images/Screenshot 2026-11-11 212243.png') }}'
+                image: '{{ asset('images/hotel-img.png') }}'
             },
             {
                 title: 'Serene Sunset Views Over Inya Lake',
                 subtitle: 'Lakeside Sanctuary • Calm Waters & Garden Walks',
-                image: '{{ asset('images/room.png') }}'
+                image: '{{ asset('images/room3.png') }}'
             },
             {
                 title: 'Dignified Heritage & Modern Elegance',
                 subtitle: 'Mayangone Estate • Exclusive Guest Accommodations',
-                image: '{{ asset('images/Screenshot 2026-11-11 212858.png') }}'
+                image: '{{ asset('images/room2.png') }}'
+            },
+            {
+                title: 'Dignified Heritage & Modern Elegance',
+                subtitle: 'Mayangone Estate • Exclusive Guest Accommodations',
+                image: '{{ asset('images/lake-view.png') }}'
             }
         ],
         init() {
@@ -28,7 +33,7 @@
         startAutoPlay() {
             this.timer = setInterval(() => {
                 this.next();
-            }, 5000);
+            }, 4000);
         },
         stopAutoPlay() {
             clearInterval(this.timer);
@@ -41,15 +46,15 @@
         }
     }" @mouseenter="stopAutoPlay()" @mouseleave="startAutoPlay()"
         class="relative w-full min-h-[480px] lg:min-h-[550px] flex flex-col justify-between overflow-hidden bg-primary">
-        
+
         <!-- BACKGROUND SLIDES (Cross-Fade Overlay) -->
         <template x-for="(slide, index) in slides" :key="index">
             <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out bg-cover bg-center"
                 :class="activeSlide === index + 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'"
                 :style="`background-image: url('${slide.image}')`">
-                <!-- Dark Editorial Gradient Overlay for readability -->
-                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
+                <!-- Subtle Theme Overlay (Reduced Green Tint) -->
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/65 via-tertiary/45 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-tertiary/80 via-black/20 to-transparent"></div>
             </div>
         </template>
 
@@ -90,7 +95,7 @@
         <!-- CAROUSEL CONTROLS & COUNTER BADGE -->
         <div class="relative z-20 max-w-7xl w-full mx-auto px-gutter-mobile lg:px-margin pb-4 flex justify-end">
             <div
-                class="bg-primary-container/80 backdrop-blur-md border border-primary-fixed/20 px-4 py-2 rounded flex items-center gap-4 text-white shadow-2xl">
+                class="bg-primary backdrop-blur-md border border-primary-fixed/20 px-4 py-2 rounded flex items-center gap-4 text-white shadow-2xl">
                 <!-- Counter Badge -->
                 <div class="font-mono text-xs tracking-wider flex items-center gap-1">
                     <span class="font-bold text-secondary-fixed" x-text="String(activeSlide).padStart(2, '0')"></span>
@@ -195,121 +200,8 @@
         </div>
     </section>
 
-    <!-- SECTION 2: FEATURED ROOMS & SUITES -->
-    <section class="w-full py-16 lg:py-24 bg-surface" id="rooms">
-        <div class="max-w-7xl mx-auto px-gutter-mobile lg:px-margin">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-                <div>
-                    <span
-                        class="font-label-caps text-xs tracking-widest text-secondary uppercase font-semibold">Accommodations</span>
-                    <h2 class="font-headline-lg text-3xl md:text-4xl text-primary mt-1">Featured Rooms &amp; Suites</h2>
-                </div>
-                <p class="font-body-sm text-on-surface-variant max-w-md mt-2 md:mt-0">
-                    Thoughtfully appointed sanctuaries with distinct perspectives across Inya Grand View Hotel.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- CARD 1 -->
-                <div
-                    class="bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
-                    <div class="relative h-64 w-full">
-                        <img alt="Grand Deluxe Lake View Suite bedroom overlooking Inya Lake"
-                            class="w-full h-full object-cover" src="{{ asset('images/room.png') }}" />
-                        <span
-                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-primary/90 text-white font-label-caps text-[10px] uppercase tracking-wider font-medium">
-                            Lake View (Rear Facing)
-                        </span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1 justify-between">
-                        <div>
-                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Grand Deluxe Lake View
-                                Suite</h3>
-                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Floor-to-ceiling glass opening
-                                to a private teak balcony directly facing Inya Lake's serene waters.</p>
-                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 85 sqm</div>
-                        </div>
-                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
-                            <div>
-                                <span class="font-price-display text-xl text-primary font-bold">$380</span>
-                                <span class="font-body-sm text-xs text-outline">/ night</span>
-                            </div>
-                            <button
-                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
-                                data-room="Grand Deluxe Lake View Suite" type="button">
-                                Reserve
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- CARD 2 -->
-                <div
-                    class="bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
-                    <div class="relative h-64 w-full">
-                        <img alt="Executive Courtyard Suite" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOaJuxcaiKdlc2YPYDCNdgZljODhOGfRL9-DL1-lYW-yKyQayNWEdogaSQB_f-XrJyUb_m4fFosy1ePVGl6K-IwiExWsY4tMuJ2q4xGCOcwhjvah0J3M-q_EsG_6BPIErH0-Ki41FvKK4Axljk2qJfXHJ92lq1hbZSxgIIn1__hK3DwaXLlNct9BfOaEt5XGeakiQkEbUlZF3_Js9Qk885LyqzvwTgJkwOfRAMFqY" />
-                        <span
-                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-surface-container-high/90 text-on-surface font-label-caps text-[10px] uppercase tracking-wider font-medium">
-                            Courtyard View (Front Facing)
-                        </span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1 justify-between">
-                        <div>
-                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Executive Courtyard
-                                Suite</h3>
-                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Overlooks the grand palm-lined
-                                approach and tiered fountain with soaring ceilings and teak wood detailing.</p>
-                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 65 sqm</div>
-                        </div>
-                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
-                            <div>
-                                <span class="font-price-display text-xl text-primary font-bold">$260</span>
-                                <span class="font-body-sm text-xs text-outline">/ night</span>
-                            </div>
-                            <button
-                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
-                                data-room="Executive Courtyard Suite" type="button">
-                                Reserve
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- CARD 3 -->
-                <div
-                    class="bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
-                    <div class="relative h-64 w-full">
-                        <img alt="Garden Deluxe Room" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBspHH8l-ZVOobZKhJzT8hly5JpqCBmDd2rVGl-9bv91x40D8Z6OfBeqzPpYuHLGA3Gj2gzSb-enXHOkByVeQhoyyNnvuKe7e0ljah9haar8cMBmuzRtp-xWNNMFGJnLgycEI_9GzqwBrozVRrTifW5WYIGv8WbAEh5xzYVTTGD7ugepc-V9rAlrrkfWySRRhdXBGnxCrSt9ohkGlySlTERn663rh84kyOj8OEA2TY" />
-                        <span
-                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-surface-container-high/90 text-on-surface font-label-caps text-[10px] uppercase tracking-wider font-medium">
-                            Garden View
-                        </span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1 justify-between">
-                        <div>
-                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Garden Deluxe Room</h3>
-                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Quiet retreat flanked by
-                                tropical foliage, native jasmine gardens, and custom handcrafted furnishings.</p>
-                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 48 sqm</div>
-                        </div>
-                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
-                            <div>
-                                <span class="font-price-display text-xl text-primary font-bold">$190</span>
-                                <span class="font-body-sm text-xs text-outline">/ night</span>
-                            </div>
-                            <button
-                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
-                                data-room="Garden Deluxe Room" type="button">
-                                Reserve
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: ABOUT THE HOTEL -->
-    <section class="w-full py-16 lg:py-24 bg-surface-container-low border-y border-surface-container-high" id="about">
+    <!-- SECTION 2: ABOUT THE HOTEL -->
+    <section class="w-full py-16 lg:py-24 bg-surface" id="about">
         <div class="max-w-7xl mx-auto px-gutter-mobile lg:px-margin">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 flex flex-col">
@@ -341,7 +233,125 @@
                 <div class="lg:col-span-6">
                     <div class="rounded-lg overflow-hidden shadow-md border border-surface-container-highest">
                         <img alt="Lobby reception lounge with teak furnishings at Inya Grand View Hotel"
-                            class="w-full h-[380px] object-cover" src="{{ asset('images/unnamed.jpg') }}" />
+                            class="w-full h-[380px] object-cover" src="{{ asset('images/reception.png') }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED ROOMS & SUITES -->
+    <section class="w-full py-16 lg:py-24 bg-surface-container-low border-y border-surface-container-high" id="rooms">
+        <div class="max-w-7xl mx-auto px-gutter-mobile lg:px-margin">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span
+                        class="font-label-caps text-xs tracking-widest text-secondary uppercase font-semibold">Accommodations</span>
+                    <h2 class="font-headline-lg text-3xl md:text-4xl text-primary mt-1">Featured Rooms &amp; Suites</h2>
+                </div>
+                <p class="font-body-sm text-on-surface-variant max-w-md mt-2 md:mt-0">
+                    Thoughtfully appointed sanctuaries with distinct perspectives across Inya Grand View Hotel.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- CARD 1 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
+                    <div class="relative h-64 w-full overflow-hidden">
+                        <img alt="Grand Deluxe Lake View Suite bedroom overlooking Inya Lake"
+                            class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                            src="{{ asset('images/room.png') }}" />
+                        <span
+                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-primary/90 text-white font-label-caps text-[10px] uppercase tracking-wider font-medium">
+                            Lake View (Rear Facing)
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Grand Deluxe Lake View
+                                Suite</h3>
+                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Floor-to-ceiling glass opening
+                                to a private teak balcony directly facing Inya Lake's serene waters.</p>
+                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 85 sqm</div>
+                        </div>
+                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
+                            <div>
+                                <span class="font-price-display text-xl text-primary font-bold">$380</span>
+                                <span class="font-body-sm text-xs text-outline">/ night</span>
+                            </div>
+                            <button
+                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
+                                data-room="Grand Deluxe Lake View Suite" type="button">
+                                Reserve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
+                    <div class="relative h-64 w-full overflow-hidden">
+                        <img alt="Executive Courtyard Suite"
+                            class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOaJuxcaiKdlc2YPYDCNdgZljODhOGfRL9-DL1-lYW-yKyQayNWEdogaSQB_f-XrJyUb_m4fFosy1ePVGl6K-IwiExWsY4tMuJ2q4xGCOcwhjvah0J3M-q_EsG_6BPIErH0-Ki41FvKK4Axljk2qJfXHJ92lq1hbZSxgIIn1__hK3DwaXLlNct9BfOaEt5XGeakiQkEbUlZF3_Js9Qk885LyqzvwTgJkwOfRAMFqY" />
+                        <span
+                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-surface-container-high/90 text-on-surface font-label-caps text-[10px] uppercase tracking-wider font-medium">
+                            Courtyard View (Front Facing)
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Executive Courtyard
+                                Suite</h3>
+                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Overlooks the grand palm-lined
+                                approach and tiered fountain with soaring ceilings and teak wood detailing.</p>
+                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 65 sqm</div>
+                        </div>
+                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
+                            <div>
+                                <span class="font-price-display text-xl text-primary font-bold">$260</span>
+                                <span class="font-body-sm text-xs text-outline">/ night</span>
+                            </div>
+                            <button
+                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
+                                data-room="Executive Courtyard Suite" type="button">
+                                Reserve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-md border border-surface-container-highest overflow-hidden flex flex-col hover:border-secondary transition-colors">
+                    <div class="relative h-64 w-full overflow-hidden">
+                        <img alt="Garden Deluxe Room"
+                            class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBspHH8l-ZVOobZKhJzT8hly5JpqCBmDd2rVGl-9bv91x40D8Z6OfBeqzPpYuHLGA3Gj2gzSb-enXHOkByVeQhoyyNnvuKe7e0ljah9haar8cMBmuzRtp-xWNNMFGJnLgycEI_9GzqwBrozVRrTifW5WYIGv8WbAEh5xzYVTTGD7ugepc-V9rAlrrkfWySRRhdXBGnxCrSt9ohkGlySlTERn663rh84kyOj8OEA2TY" />
+                        <span
+                            class="absolute top-3 left-3 px-2.5 py-1 rounded bg-surface-container-high/90 text-on-surface font-label-caps text-[10px] uppercase tracking-wider font-medium">
+                            Garden View
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                            <h3 class="font-headline-sm text-xl text-primary font-semibold mb-1">Garden Deluxe Room</h3>
+                            <p class="font-body-sm text-on-surface-variant text-sm mb-4">Quiet retreat flanked by
+                                tropical foliage, native jasmine gardens, and custom handcrafted furnishings.</p>
+                            <div class="text-xs text-outline mb-6">Occupancy: Up to 2 Guests • 48 sqm</div>
+                        </div>
+                        <div class="pt-4 border-t border-surface-container-high flex items-center justify-between">
+                            <div>
+                                <span class="font-price-display text-xl text-primary font-bold">$190</span>
+                                <span class="font-body-sm text-xs text-outline">/ night</span>
+                            </div>
+                            <button
+                                class="reserve-btn px-4 py-2 rounded bg-primary text-white hover:bg-primary-container text-xs font-semibold uppercase tracking-wider transition-colors"
+                                data-room="Garden Deluxe Room" type="button">
+                                Reserve
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
